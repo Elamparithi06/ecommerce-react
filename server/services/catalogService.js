@@ -317,7 +317,9 @@ async function callOmkar(path, params = {}) {
     });
 
     if (!response.ok) {
-      throw new Error(`Omkar API failed with ${response.status}.`);
+      const errorBody = await response.text().catch(() => "");
+      const suffix = errorBody ? ` Response: ${errorBody.slice(0, 300)}` : "";
+      throw new Error(`Omkar API failed with ${response.status}.${suffix}`);
     }
 
     const payload = await response.json();
