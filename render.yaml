@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: novacart-api
+    env: node
+    rootDir: .
+    buildCommand: npm install
+    startCommand: npm run server
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: PORT
+        value: 4000
+      - key: CLIENT_ORIGIN
+        sync: false
+      - key: FREEAPI_FALLBACK_TO_MOCK
+        value: true
+      - key: OMKAR_COUNTRY_CODE
+        value: IN
+      - key: OMKAR_DEFAULT_QUERY
+        value: best sellers
+      - key: OMKAR_FALLBACK_TO_FREEAPI
+        value: true
+      - key: OMKAR_MAX_PAGES
+        value: 50
+      - key: OMKAR_CACHE_TTL_MS
+        value: 180000
+      - key: AMAZON_FALLBACK_TO_MOCK
+        value: true
